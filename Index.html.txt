@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CloudSphere Enterprise DevOps Control Plane</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="bg-slate-950 text-slate-100 font-sans antialiased min-h-screen flex flex-col">
+
+    <!-- Top Navigation Bar -->
+    <header class="bg-slate-900 border-b border-slate-800 sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+                <div class="bg-indigo-600 p-2 rounded-lg text-white">
+                    <i class="fa-solid fa-cloud-arrow-up text-xl"></i>
+                </div>
+                <div>
+                    <h1 class="font-bold text-lg tracking-tight">CloudSphere <span class="text-indigo-400 font-normal">DevOps Control Plane</span></h1>
+                    <p class="text-xs text-slate-400">Cluster: <span class="text-emerald-400 font-mono">aws-eks-us-east-1-prod</span></p>
+                </div>
+            </div>
+            <div class="flex items-center space-x-4">
+                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-emerald-950 text-emerald-400 border border-emerald-800">
+                    <span class="w-2 h-2 mr-1.5 bg-emerald-500 rounded-full animate-pulse"></span> All Systems Operational
+                </span>
+                <div class="h-8 w-px bg-slate-800"></div>
+                <div class="flex items-center space-x-2 text-sm text-slate-300">
+                    <i class="fa-solid fa-user-shield text-indigo-400"></i>
+                    <span>Bijayananda Sethi</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Dashboard Container -->
+    <main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
+
+        <!-- Telemetry Metric Cards -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            <div class="bg-slate-900 border border-slate-800 rounded-xl p-5 shadow-sm">
+                <div class="flex items-center justify-between">
+                    <span class="text-sm font-medium text-slate-400">Cluster CPU Load</span>
+                    <i class="fa-solid fa-microchip text-indigo-400"></i>
+                </div>
+                <div class="mt-2 flex items-baseline justify-between">
+                    <div class="text-2xl font-bold font-mono" id="cpu-metric">42.8%</div>
+                    <span class="text-xs text-emerald-400 font-medium">+2.1%</span>
+                </div>
+                <div class="mt-3 w-full bg-slate-800 rounded-full h-1.5">
+                    <div class="bg-indigo-500 h-1.5 rounded-full" style="width: 42.8%"></div>
+                </div>
+            </div>
+
+            <div class="bg-slate-900 border border-slate-800 rounded-xl p-5 shadow-sm">
+                <div class="flex items-center justify-between">
+                    <span class="text-sm font-medium text-slate-400">Memory Utilization</span>
+                    <i class="fa-solid fa-memory text-sky-400"></i>
+                </div>
+                <div class="mt-2 flex items-baseline justify-between">
+                    <div class="text-2xl font-bold font-mono" id="mem-metric">64.2%</div>
+                    <span class="text-xs text-emerald-400 font-medium">-0.8%</span>
+                </div>
+                <div class="mt-3 w-full bg-slate-800 rounded-full h-1.5">
+                    <div class="bg-sky-500 h-1.5 rounded-full" style="width: 64.2%"></div>
+                </div>
+            </div>
+
+            <div class="bg-slate-900 border border-slate-800 rounded-xl p-5 shadow-sm">
+                <div class="flex items-center justify-between">
+                    <span class="text-sm font-medium text-slate-400">Active EKS Pods</span>
+                    <i class="fa-solid fa-cubes text-emerald-400"></i>
+                </div>
+                <div class="mt-2 flex items-baseline justify-between">
+                    <div class="text-2xl font-bold font-mono">64 / 64</div>
+                    <span class="text-xs text-emerald-400 font-medium">100% Ready</span>
+                </div>
+                <div class="mt-3 w-full bg-slate-800 rounded-full h-1.5">
+                    <div class="bg-emerald-500 h-1.5 rounded-full" style="width: 100%"></div>
+                </div>
+            </div>
+
+            <div class="bg-slate-900 border border-slate-800 rounded-xl p-5 shadow-sm">
+                <div class="flex items-center justify-between">
+                    <span class="text-sm font-medium text-slate-400">GitOps Sync Status</span>
+                    <i class="fa-solid fa-rotate text-purple-400"></i>
+                </div>
+                <div class="mt-2 flex items-baseline justify-between">
+                    <div class="text-2xl font-bold font-mono text-purple-400">Synced</div>
+                    <span class="text-xs text-slate-400">ArgoCD</span>
+                </div>
+                <div class="mt-3 text-xs text-slate-400 flex justify-between">
+                    <span>Target: HEAD</span>
+                    <span class="font-mono">rev-7f89a2b</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Infrastructure & Logs Section -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            
+            <!-- Kubernetes Workload Inspection Grid -->
+            <div class="lg:col-span-2 bg-slate-900 border border-slate-800 rounded-xl p-6 shadow-sm flex flex-col">
+                <div class="flex items-center justify-between mb-4">
+                    <h2 class="font-semibold text-lg flex items-center gap-2">
+                        <i class="fa-solid fa-server text-indigo-400"></i> Production Microservices Grid
+                    </h2>
+                    <span class="text-xs font-mono text-slate-400 bg-slate-800 px-2 py-1 rounded">Namespace: default</span>
+                </div>
+                
+                <div class="overflow-x-auto flex-1">
+                    <table class="w-full text-left border-collapse text-sm">
+                        <thead>
+                            <tr class="border-b border-slate-800 text-slate-400 text-xs uppercase">
+                                <th class="py-3 px-3">Service Name</th>
+                                <th class="py-3 px-3">Replicas</th>
+                                <th class="py-3 px-3">Status</th>
+                                <th class="py-3 px-3">Restarts</th>
+                                <th class="py-3 px-3">Uptime</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-800/60 font-mono text-xs">
+                            <tr class="hover:bg-slate-800/40 transition">
+                                <td class="py-3 px-3 font-semibold text-slate-200">auth-api-service</td>
+                                <td class="py-3 px-3">4/4</td>
+                                <td class="py-3 px-3"><span class="text-emerald-400 bg-emerald-950 px-2 py-0.5 rounded border border-emerald-900">Running</span></td>
+                                <td class="py-3 px-3">0</td>
+                                <td class="py-3 px-3 text-slate-400">14d</td>
+                            </tr>
+                            <tr class="hover:bg-slate-800/40 transition">
+                                <td class="py-3 px-3 font-semibold text-slate-200">payment-gateway</td>
+                                <td class="py-3 px-3">8/8</td>
+                                <td class="py-3 px-3"><span class="text-emerald-400 bg-emerald-950 px-2 py-0.5 rounded border border-emerald-900">Running</span></td>
+                                <td class="py-3 px-3">0</td>
+                                <td class="py-3 px-3 text-slate-400">14d</td>
+                            </tr>
+                            <tr class="hover:bg-slate-800/40 transition">
+                                <td class="py-3 px-3 font-semibold text-slate-200">frontend-react-app</td>
+                                <td class="py-3 px-3">12/12</td>
+                                <td class="py-3 px-3"><span class="text-emerald-400 bg-emerald-950 px-2 py-0.5 rounded border border-emerald-900">Running</span></td>
+                                <td class="py-3 px-3">1</td>
+                                <td class="py-3 px-3 text-slate-400">6d</td>
+                            </tr>
+                            <tr class="hover:bg-slate-800/40 transition">
+                                <td class="py-3 px-3 font-semibold text-slate-200">mongodb-statefulset</td>
+                                <td class="py-3 px-3">3/3</td>
+                                <td class="py-3 px-3"><span class="text-emerald-400 bg-emerald-950 px-2 py-0.5 rounded border border-emerald-900">Running</span></td>
+                                <td class="py-3 px-3">0</td>
+                                <td class="py-3 px-3 text-slate-400">30d</td>
+                            </tr>
+                            <tr class="hover:bg-slate-800/40 transition">
+                                <td class="py-3 px-3 font-semibold text-slate-200">notification-worker</td>
+                                <td class="py-3 px-3">2/2</td>
+                                <td class="py-3 px-3"><span class="text-emerald-400 bg-emerald-950 px-2 py-0.5 rounded border border-emerald-900">Running</span></td>
+                                <td class="py-3 px-3">0</td>
+                                <td class="py-3 px-3 text-slate-400">2d</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Live Deployment Terminal Log Stream -->
+            <div class="bg-slate-900 border border-slate-800 rounded-xl p-6 shadow-sm flex flex-col">
+                <div class="flex items-center justify-between mb-4">
+                    <h2 class="font-semibold text-lg flex items-center gap-2">
+                        <i class="fa-solid fa-terminal text-emerald-400"></i> CI/CD Log Stream
+                    </h2>
+                    <span class="flex h-2 w-2 relative">
+                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                        <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+                    </span>
+                </div>
+                <div class="bg-black/80 rounded-lg p-4 font-mono text-[11px] text-emerald-400 flex-1 overflow-y-auto space-y-1.5 border border-slate-800/80 min-h-[240px]">
+                    <p class="text-slate-500">[14:25:01] INFO: Webhook received from GitHub main branch.</p>
+                    <p class="text-slate-300">[14:25:02] STEP 1: Running Trivy container vulnerability scan...</p>
+                    <p class="text-emerald-500">[14:25:05] SUCCESS: 0 Critical, 0 High vulnerabilities found.</p>
+                    <p class="text-slate-300">[14:25:06] STEP 2: Building multi-stage Docker image tag v1.4.2...</p>
+                    <p class="text-slate-300">[14:25:12] STEP 3: Pushing artifact to AWS ECR repository...</p>
+                    <p class="text-slate-300">[14:25:15] STEP 4: Triggering ArgoCD GitOps reconciliation...</p>
+                    <p class="text-purple-400">[14:25:18] SYNC: Kubernetes deployment manifests updated.</p>
+                    <p class="text-emerald-400 font-bold">[14:25:20] READY: Rolling deployment successfully completed.</p>
+                </div>
+            </div>
+
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-slate-900 border-t border-slate-800 py-4 mt-auto">
+        <div class="max-w-7xl mx-auto px-4 text-center text-xs text-slate-500">
+            CloudSphere Enterprise Control Plane &bull; Built with Docker, Kubernetes, Terraform & AWS
+        </div>
+    </footer>
+
+</body>
+</html>
