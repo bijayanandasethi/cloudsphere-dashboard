@@ -3,7 +3,7 @@
 ![CloudSphere Banner](https://img.shields.io/badge/Status-Live_Production-emerald?style=for-the-badge)
 ![License](https://img.shields.io/badge/License-MIT-blue?style=for-the-badge)
 
-> **Live Interactive Demo:** [https://bijayanandasethi.github.io/cloudsphere-dashboard/](https://bijayanandasethi.github.io/cloudsphere-dashboard/)
+> **Live Interactive Demo:** https://github.com/bijayanandasethi/cloudsphere-dashboard.git
 
 ---
 
